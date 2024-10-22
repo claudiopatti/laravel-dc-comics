@@ -8,7 +8,9 @@
 </h1>
 
 <div class="card">
-    <img class="card-img-top" src="{{ $comic->thumb }}" alt="{{ $comic->title }}">
+    @if ($comic->thumb != null)
+        <img class="card-img-top" src="{{ $comic->thumb }}" alt="{{ $comic->title }}">
+    @endif
     <div class="card-body">
         <ul>
             <li>

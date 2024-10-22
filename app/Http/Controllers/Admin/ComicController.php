@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 // models
 use App\Models\Comic;
+use Illuminate\Support\Js;
 
 class ComicController extends Controller
 {
@@ -25,7 +26,7 @@ class ComicController extends Controller
      */
     public function create()
     {
-        //
+        return view('comics.create');
     }
 
     /**
@@ -33,7 +34,23 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $data = $request->all();
+
+        $comic = new Comic();
+        $comic->title = $data['title'];
+        $comic->description = $data['description'];
+        $comic->thumb = $data['thumb'];
+        $comic->price = $data['price'];
+        $comic->series = $data['series'];
+        $comic->sale_date = $data['sale_date'];
+        $comic->type = $data['type'];
+        $comic->artists = json_decode($data['artists']);
+        $comic->writers = json_decode($data['writers']);
+        $comic->save();
+
+        return redirect()->route('comics.show', ['comic' => $comic->id]);
+
     }
 
     /**
@@ -41,7 +58,7 @@ class ComicController extends Controller
      */
     public function show(string $id)
     {
-        $comic = Comic::find($id);
+        $comic = Comic::findOrFail($id); // find or fail mi dara se id è esistente me lo da se no da 404 error
 
         return view('comics.show', compact('comic'));
     }

@@ -11,6 +11,11 @@
             'active' => true,
         ],
         [
+            'url' => '/comics',
+            'label' => 'Comics',
+            'active' => true,
+        ],
+        [
             'url' => '/contatti',
             'label' => 'Contatti',
             'active' => false,
