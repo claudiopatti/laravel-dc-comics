@@ -38,6 +38,11 @@
           <td>{{$comic['type']}}</td>
           <td>{{$comic['artists']}}</td>
           <td>{{$comic['writers']}}</td>
+          <td>
+            <a href="{{ route('comics.show', ['comic' => $comic->id])}}" class="btn btn-danger">
+                Guarda il Fumetto
+            </a>
+          </td>
         </tr>
             
         @endforeach
