@@ -45,8 +45,11 @@
           <td>{{$comic['artists']}}</td>
           <td>{{$comic['writers']}}</td>
           <td>
-            <a href="{{ route('comics.show', ['comic' => $comic->id])}}" class="btn btn-danger">
+            <a href="{{ route('comics.show', ['comic' => $comic->id])}}" class="btn btn-primary">
                 Guarda il Fumetto
+            </a>
+            <a href="{{ route('comics.edit', ['comic' => $comic->id])}}" class="btn btn-success">
+              Modifica il Fumetto
             </a>
           </td>
         </tr>

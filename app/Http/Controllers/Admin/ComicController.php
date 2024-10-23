@@ -45,8 +45,10 @@ class ComicController extends Controller
         $comic->series = $data['series'];
         $comic->sale_date = $data['sale_date'];
         $comic->type = $data['type'];
-        $comic->artists = json_decode($data['artists']);
-        $comic->writers = json_decode($data['writers']);
+        $explodedArtists = explode(',', $data['artists']);
+        $comic->artists = json_encode($explodedArtists);
+        $explodedWriters = explode(',', $data['writers']);
+        $comic->writers = json_encode($explodedWriters);
         $comic->save();
 
         return redirect()->route('comics.show', ['comic' => $comic->id]);
@@ -68,7 +70,9 @@ class ComicController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $comic = Comic::findOrFail($id);
+
+        return view('comics.edit', compact('comic'));
     }
 
     /**
@@ -76,7 +80,25 @@ class ComicController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $comic = Comic::findOrFail($id);
+
+        $data = $request->all();
+
+        $comic->title = $data['title'];
+        $comic->description = $data['description'];
+        $comic->thumb = $data['thumb'];
+        $comic->price = $data['price'];
+        $comic->series = $data['series'];
+        $comic->sale_date = $data['sale_date'];
+        $comic->type = $data['type'];
+        $explodedArtists = explode(',', $data['artists']);
+        $comic->artists = json_encode($explodedArtists);
+        $explodedWriters = explode(',', $data['writers']);
+        $jsonWriters = json_encode($explodedWriters);
+        $comic->writers = $jsonWriters;
+        $comic->save();
+
+        return redirect()->route('comics.show', ['comic' => $comic->id]);
     }
 
     /**

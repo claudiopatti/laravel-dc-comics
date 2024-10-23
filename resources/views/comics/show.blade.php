@@ -26,7 +26,26 @@
                 Data di uscita:  {{ $comic->sale_date }}
             </li>
             <li>
-                Artisti sono:  {{ $comic->artists }}
+                Artisti sono: 
+                <ul>
+                    @foreach (json_decode($comic->artists, true) as $artist)
+                    <li>
+                        {{ $artist }}
+                    </li>
+                        
+                    @endforeach
+                </ul>
+            </li>
+            <li>
+                Disegnatori sono: 
+                <ul>
+                    @foreach (json_decode($comic->writers, true) as $writer)
+                    <li>
+                        {{ $writer }}
+                    </li>
+                        
+                    @endforeach
+                </ul>
             </li>
         </ul>
 
