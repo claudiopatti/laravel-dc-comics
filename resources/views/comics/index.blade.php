@@ -51,6 +51,17 @@
             <a href="{{ route('comics.edit', ['comic' => $comic->id])}}" class="btn btn-success">
               Modifica il Fumetto
             </a>
+            <form 
+              onsubmit="return confirm('sei proprio sicuro di voler eliminare {{ $comic->title }}')"
+              action="{{ route('comics.destroy', ['comic' => $comic->id])}}" 
+              method="POST" 
+              class="d-inline-block">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">
+                    ELIMINA
+                </button>
+            </form>
           </td>
         </tr>
             

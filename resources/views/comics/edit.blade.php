@@ -75,6 +75,10 @@
         <button type="submit" class="btn btn-danger w-75">
             AGGIORNA
         </button>
+
+        <a href="{{ route('comics.index') }}" type="submit" class="btn btn-danger w-25 ">
+            Annulla
+        </a>
     </div>
 
 </form>
