@@ -18,7 +18,7 @@
     </div>
     <div class="mb-3">
         <label for="description" class="form-label">Description<span class="text-danger">*</span></label>
-        <textarea type="text" class="form-control" name="description" id="description" placeholder="Inserisci la descrizone del fumetto....." maxlength="4096" required value="{{ $comic->description}}"></textarea>
+        <textarea type="text" class="form-control" name="description" id="description" placeholder="Inserisci la descrizone del fumetto....." maxlength="4096" required >{{ $comic->description}}</textarea>
     </div>
     <div class="mb-3">
         <label for="thumb" class="form-label">Thumb</label>
@@ -58,14 +58,14 @@
     </div>
     <div class="mb-3">
         <label for="artists" class="form-label">Artists</label>
-        <input type="text" class="form-control" name="artists" id="artists" aria-describedby="artists-help" placeholder="Inserisci Gli artisti del fumetto....." value="{{ $comic->artists}}">
+        <input type="text" class="form-control" name="artists" id="artists" aria-describedby="artists-help" placeholder="Inserisci Gli artisti del fumetto....." value="{{ implode(',', json_decode($comic->artists, true))}}">
         <div id="artists-help" class="form-text">
             Inserisci i nomi degli artisti divisi da virgole
         </div>
     </div>
     <div class="mb-3">
         <label for="writers" class="form-label">Writers</label>
-        <input type="text" class="form-control" name="writers" id="writers" aria-describedby="writers-help" placeholder="Inserisci gli scrittori del fumetto....." value="{{ $comic->writers}}">
+        <input type="text" class="form-control" name="writers" id="writers" aria-describedby="writers-help" placeholder="Inserisci gli scrittori del fumetto....." value="{{ implode(',', json_decode($comic->writers, true))}}">
         <div id="writers-help" class="form-text">
             Inserisci i nomi degli scrittori divisi da virgole
         </div>

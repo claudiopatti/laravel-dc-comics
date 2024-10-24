@@ -36,7 +36,7 @@
         @foreach ($comics as $comic)
         <tr>
           <th scope="row">{{$comic['id']}}</th>
-          <td>{{$comic['title']}}</td>
+          <td>{{$comic->title}}</td>
           <td>{{$comic['description']}}</td>
           <td>${{$comic['price']}}</td>
           <td>{{$comic['series']}}</td>
@@ -52,7 +52,7 @@
               Modifica il Fumetto
             </a>
             <form 
-              onsubmit="return confirm('sei proprio sicuro di voler eliminare {{ $comic->title }}')"
+              onsubmit="return confirm('sei proprio sicuro di voler eliminare:  {{ $comic->title }}')"
               action="{{ route('comics.destroy', ['comic' => $comic->id])}}" 
               method="POST" 
               class="d-inline-block">

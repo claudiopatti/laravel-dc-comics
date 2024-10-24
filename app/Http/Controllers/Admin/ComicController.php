@@ -33,8 +33,20 @@ class ComicController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        // dd($request->all());
+    {   
+        $request->validate([
+            'title' => 'required|min:3|max:64|',
+            'description' => 'required|min:3|max:4096|',
+            'thumb' => 'nullable|url',
+            'price' => 'required|decimal:2|min:1',
+            'series' => 'required|min:3|max:64|',
+            'sale_date' => 'nullable|date',
+            'type' => 'required|min:3|max:64|',
+            'artists' => 'nullable',
+            'writers' => 'nullable',
+
+        ]);
+        // dd('Validato con sucesso');
         $data = $request->all();
 
         $comic = new Comic();
@@ -92,9 +104,9 @@ class ComicController extends Controller
         $comic->sale_date = $data['sale_date'];
         $comic->type = $data['type'];
         $explodedArtists = explode(',', $data['artists']);
-        $comic->artists = json_encode($explodedArtists);
+        $comic->artists = $explodedArtists;
         $explodedWriters = explode(',', $data['writers']);
-        $jsonWriters = json_encode($explodedWriters);
+        $jsonWriters = $explodedWriters;
         $comic->writers = $jsonWriters;
         $comic->save();
 
